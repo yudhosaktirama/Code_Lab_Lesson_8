@@ -6,12 +6,13 @@ import androidx.lifecycle.ViewModel
 class GameViewModel : ViewModel() {
     private var _score = 0
     private  var _currentWordCount = 0
-    private var _currentScrambleWord = "test"
+    private lateinit var _currentScrambleWord : String
     private var wordsList: MutableList<String> = mutableListOf()
     private lateinit var currentWord: String
 
     init {
         Log.d("GameFragment", "Fragment Terbuat")
+        getNextWord()
     }
 
     override fun onCleared() {
