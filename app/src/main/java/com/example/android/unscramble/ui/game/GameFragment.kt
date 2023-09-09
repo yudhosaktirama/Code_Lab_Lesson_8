@@ -51,7 +51,7 @@ class GameFragment : Fragment() {
     ): View {
         // Inflate the layout XML file and return a binding object instance
         binding = GameFragmentBinding.inflate(inflater, container, false)
-        Log.d("GameFragment", "Word: ${viewModel.currentWord} " +
+        Log.d("GameFragment", "Word: ${viewModel.currentScrambledWord.value} " +
                 "Score: ${viewModel.score} WordCount: ${viewModel.currentWordCount}")
         return binding.root
     }
@@ -72,7 +72,7 @@ class GameFragment : Fragment() {
                 binding.wordCount.text =
                     getString(R.string.word_count, newWordCount, MAX_NO_OF_WORDS)
             })
-        viewModel.currentWord.observe(viewLifecycleOwner, {
+        viewModel.currentScrambledWord.observe(viewLifecycleOwner, {
             newword -> binding.textViewUnscrambledWord.text = newword
         })
     }

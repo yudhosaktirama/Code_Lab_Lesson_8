@@ -10,10 +10,11 @@ class GameViewModel : ViewModel() {
     private  var _currentWordCount = MutableLiveData(0)
     val currentWordCount: LiveData<Int>
         get() = _currentWordCount
-    private lateinit var _currentScrambleWord : MutableLiveData<String>()
+    private val _currentScrambleWord : MutableLiveData<String>()
+        val currentScrambledWord: LiveData<String>
+        get() = _currentScrambleWord
     private var wordsList: MutableList<String> = mutableListOf()
-    var currentWord: LiveData<String>
-         get() = _currentScrambleWord
+    private  lateinit var currentWord: String
     val score: LiveData<Int>
         get() = _score
 
@@ -27,7 +28,7 @@ class GameViewModel : ViewModel() {
     }
 
     fun isUserWordCorrect(playerWord: String): Boolean {
-        if (playerWord.equals(currentWord.value, true)) {
+        if (playerWord.equals(currentScrambledWord.value, true)) {
             increaseScore()
             return true
         }
