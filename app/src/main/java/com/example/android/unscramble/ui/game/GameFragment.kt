@@ -143,9 +143,6 @@ class GameFragment : Fragment() {
     /*
      * Displays the next scrambled word on screen.
      */
-    private fun updateNextWordOnScreen() {
-        binding.textViewUnscrambledWord.text = viewModel.currentScrambleWord
-    }
 
     override fun onDetach() {
         super.onDetach()
