@@ -42,7 +42,7 @@ class GameViewModel : ViewModel() {
 
 
     private fun getNextWord() {
-        currentWord.value = allWordsList.random()
+        currentWord = allWordsList.random()
         val tempWord = currentWord.toCharArray()
         while (String(tempWord).equals(currentWord, false)) {
             tempWord.shuffle()
@@ -52,7 +52,7 @@ class GameViewModel : ViewModel() {
             getNextWord()
         } else {
             _currentScrambleWord.value = String(tempWord)
-            ++_currentWordCount
+            _currentWordCount.value = (_currentWordCount.value)?.inc()
             wordsList.add(currentWord)
         }
 
