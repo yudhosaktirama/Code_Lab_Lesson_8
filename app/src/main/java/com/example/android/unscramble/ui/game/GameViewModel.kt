@@ -6,15 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
-    private var _score = 0
+    private var _score = MutableLiveData(0)
     private  var _currentWordCount = 0
     val currentWordCount: Int
         get() = _currentWordCount
     private lateinit var _currentScrambleWord : MutableLiveData<String>()
     private var wordsList: MutableList<String> = mutableListOf()
-     var currentWord: LiveData<String>
-        get() = _currentScrambleWord
-    val score: Int
+    val currentWord: LiveData<String>
+         get() = _currentScrambleWord
+    val score: LiveData<Int>
         get() = _score
 
     init {
@@ -27,7 +27,7 @@ class GameViewModel : ViewModel() {
     }
 
     fun isUserWordCorrect(playerWord: String): Boolean {
-        if (playerWord.equals(currentWord, true)) {
+        if (playerWord.equals(currentWord.value, true)) {
             increaseScore()
             return true
         }
@@ -40,11 +40,9 @@ class GameViewModel : ViewModel() {
         Log.d("GameFragment", "GameViewModel destroyed!")
     }
 
-    val currentScrambleWord: String
-     get() = _currentScrambleWord
 
     private fun getNextWord() {
-        currentWord = allWordsList.random()
+        currentWord.value = allWordsList.random()
         val tempWord = currentWord.toCharArray()
         while (String(tempWord).equals(currentWord, false)) {
             tempWord.shuffle()
