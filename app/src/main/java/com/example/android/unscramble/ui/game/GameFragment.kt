@@ -66,7 +66,9 @@ class GameFragment : Fragment() {
         binding.score.text = getString(R.string.score, 0)
         binding.wordCount.text = getString(
                 R.string.word_count, 0, MAX_NO_OF_WORDS)
-        viewModel.currentWord.observe()
+        viewModel.currentWord.observe(viewLifecycleOwner, {
+            newword ->
+        })
     }
 
     /*
