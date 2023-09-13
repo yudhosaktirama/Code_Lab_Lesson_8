@@ -19,6 +19,7 @@ package com.example.android.unscramble.ui.game
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -32,6 +33,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
  * Fragment where the game is played, contains the game logic.
  */
 class GameFragment : Fragment() {
+
+    private  lateinit var  coba: TextureView
 
     private  val viewModel: GameViewModel by viewModels()
 
